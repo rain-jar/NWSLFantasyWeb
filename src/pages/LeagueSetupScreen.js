@@ -85,7 +85,7 @@ const LeagueSetupScreen = ({onLeagueChosen}) => {
         const userCount = await fetchLeagueUserCount(league.league_id);
        // console.log("leagueUserCount ", league.league_id, userCount.data);
         return {...league, 
-          userCount : userCount?.data};
+          userCount : userCount?.data ?? 0};
       })
 
       const resolvedLeagues = await Promise.all(leagueUserCount);
