@@ -26,7 +26,7 @@ const DraftScreen = ({playersBase}) => {
     
 
     //Timer State variables. 
-    const [timer, setTimer] = useState(20); // 20-second countdown
+    const [timer, setTimer] = useState(90); // 90-second countdown
     const [isPaused, setIsPaused] = useState(false);
     let timerInterval = null; // To store the interval reference
     const hasTimerStarted = useRef(false); // ✅ Track whether timer has started
@@ -137,13 +137,13 @@ const DraftScreen = ({playersBase}) => {
             console.log("⏳ Skipping redundant timer update - Pick:", currentPick, "Timer Start:", timerStart);
             // 🔥 Force re-sync timer if the user navigated away and returned
             const elapsedTime = Math.floor((Date.now() - Date.parse(timerStart)) / 1000);
-            const remainingTime = Math.max(20 - elapsedTime, 0);
+            const remainingTime = Math.max(90 - elapsedTime, 0);
             console.log ("Elapsed Time : ", elapsedTime, " And Remaining Time : ", remainingTime);
             console.log("Current Pick is ", draftOrder[currentPick].user_id, draftOrder[currentPick].team_name);
 
             if (draftOrder[currentPick]?.user_id !== userId) {
-                console.log("👀 User is NOT the drafter, setting timer to 20s.");
-                setTimer(20); // ✅ Other users always see 20s
+                console.log("👀 User is NOT the drafter, setting timer to 90s.");
+                setTimer(90); // ✅ Other users always see 90s
                 return;
             }
 
@@ -159,7 +159,7 @@ const DraftScreen = ({playersBase}) => {
         // ✅ Determine if the timer should start fresh or resume from stored timerStart
         const isUserTurn = draftOrder[currentPick]?.user_id === userId;
         const elapsedTime = Math.floor((Date.now() - Date.parse(timerStart)) / 1000);
-        const remainingTime = Math.max(20 - elapsedTime, 0); // Ensure it never goes negative
+        const remainingTime = Math.max(90 - elapsedTime, 0); // Ensure it never goes negative
         console.log("Current Pick is ", draftOrder[currentPick].team_name, draftOrder[currentPick]);
         console.log("🕒 Timer Logic - User Turn:", isUserTurn, "Elapsed Time:", elapsedTime, "Remaining Time:", remainingTime);
     
@@ -167,9 +167,9 @@ const DraftScreen = ({playersBase}) => {
         if (timerRef.current) clearInterval(timerRef.current);
     
         if (isUserTurn) {
-            if (elapsedTime >= 20) {
+            if (elapsedTime >= 90) {
                 console.log("⏳ Timer expired, auto-resetting...");
-                setTimer(20);
+                setTimer(90);
             //    autoDraft(); // Auto-draft if timer has fully elapsed
             }/* else {*/
                 console.log("🔥 Starting draft timer from", remainingTime, "seconds.");
@@ -188,7 +188,7 @@ const DraftScreen = ({playersBase}) => {
             //}
         } else {
             console.log("⏳ Not user's turn, timer will not start.");
-            setTimer(20); // Ensure UI shows correct remaining time but does not start a timer
+            setTimer(90); // Ensure UI shows correct remaining time but does not start a timer
         }
     
         return () => clearInterval(timerRef.current);
@@ -342,7 +342,7 @@ const DraftScreen = ({playersBase}) => {
     
         if (timerRef.current) clearInterval(timerRef.current); // ✅ Ensure only one timer runs
     
-        setTimer(20); // Reset timer
+        setTimer(90); // Reset timer
 
         // ✅ Update `timer_start` in Supabase
         console.log("Timer start being set in Supabase");
@@ -693,7 +693,7 @@ const DraftScreen = ({playersBase}) => {
 
         //Stopping Timer since Draft button was clicked and the pick is valid. 
         clearInterval(timerInterval); // Stop the timer on manual draft
-        setTimer(20); // Reset timer for next pick
+        setTimer(90); // Reset timer for next pick
 /*
         let assignedPosition = player.position;
         if (player.position.includes("-")) {
@@ -817,7 +817,7 @@ const DraftScreen = ({playersBase}) => {
                 )}
 
                 {/*  {draftingMessage && <Typography variant="h6">{draftingMessage}</Typography>}
-                {timer === 20 ? (
+                {timer === 90 ? (
                     <Typography variant="h6">{draftOrder[currentPick].team_name} is drafting. Please wait for your turn</Typography>) : null}
             */}
 
