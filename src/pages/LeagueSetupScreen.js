@@ -212,7 +212,7 @@ const LeagueSetupScreen = ({onLeagueChosen}) => {
 
       }else{
 
-        if (participantParam.length >=8 ) {
+        if (participantParam.length >=4 ) {
           lockValue = "draft";
         }else{
           lockValue = "predraft";
