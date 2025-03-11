@@ -367,7 +367,7 @@ return (
                       //  console.log("isRechecking ", isReChecking);
                       }}
                     >
-                      <ListItemText primary={league.league_name} secondary={`League spots filled: ${league.userCount}/10`} />
+                      <ListItemText primary={league.league_name} secondary={`League spots filled: ${league.userCount}/8`} />
                     </ListItemButton>
                   </ListItem>
                 ))}
