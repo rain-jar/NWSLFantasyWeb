@@ -80,7 +80,7 @@ const CreateJoinScreen = ({ onLeagueChosen }) => {
           <CardContent>
             <Typography variant="h5" className="title">🏆 Your Current Leagues</Typography>
             {leagues.length === 0 ? (
-              <Typography className="no-league-text">No leagues found. Create or join a league.</Typography>
+              <Typography className="no-league-text">No leagues found. Create or join a league below.</Typography>
             ) : (
               <List>
                 {leagues.map((league) => (
@@ -103,6 +103,7 @@ const CreateJoinScreen = ({ onLeagueChosen }) => {
 
         {/* League Creation Section */}
         <div className="league-actions">
+        {/*
           {creatingLeague ? (
             <Card className="league-form-card">
               <CardContent>
@@ -125,6 +126,7 @@ const CreateJoinScreen = ({ onLeagueChosen }) => {
               Create a League
             </Button>
           )}
+        */}
           
           <Button className="action-btn" onClick={handleJoinLeague}>
             Join a League
@@ -134,6 +136,9 @@ const CreateJoinScreen = ({ onLeagueChosen }) => {
             Logout
         </Button>
         </div>
+        <Typography variant="h5" className="footer">During the beta phase, we are doing pre-created leagues. And since its a closed group, hope you won't mind playing against friends of friends </Typography>
+        <Typography variant="h5" className="footer">Soon, you will have the ability to create your own leagues with your friends. </Typography>
+
       </div>
 
       {/* Styles */}
@@ -267,6 +272,12 @@ const CreateJoinScreen = ({ onLeagueChosen }) => {
 
         .logout-btn:hover {
           background: darkred;
+        }
+
+        .footer {
+          font-size: 1rem;
+          margin-top: 20px;
+          margin-bottom: 15px;
         }
 
       `}</style>

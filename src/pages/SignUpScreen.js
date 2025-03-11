@@ -31,7 +31,7 @@ const SignupScreen = ( {onSelectedId}) => {
         console.log("Waiting for userLevelSet");
         if (resUserLevelSet.success) {
             console.log("userLevelSet is complete")
-            navigate("/create-join"); // Redirect to league selection
+            navigate("/join"); // Redirect to league selection
           } else {
             setErrorMessage(result.error);
           }

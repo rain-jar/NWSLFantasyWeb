@@ -262,7 +262,7 @@ const MyTeamScreen = ({playersBase}) => {
         <div className="filter-row">
           <Select value={statsFilter} onChange={(e) => setStatsFilter(e.target.value)} className="filter-select">
             <MenuItem value="2024">2024 Season</MenuItem>
-            <MenuItem value="week1">Week 1</MenuItem>
+          {/*  <MenuItem value="week1">Week 1</MenuItem>*/}
           </Select>
         </div>
 

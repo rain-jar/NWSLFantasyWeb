@@ -30,7 +30,7 @@ const LoginScreen = ({onSelectedId}) => {
       if (resUserLevelSet.success) {
           wait(10);
           console.log("userLevelSet is complete",  userId)
-          navigate("/create-join"); // Redirect to league selection
+          navigate("/join"); // Redirect to league selection
         } else {
           console.log("userId is not set yet ");
         }
@@ -38,138 +38,142 @@ const LoginScreen = ({onSelectedId}) => {
       setErrorMessage(result.error);
     }
   };
-/*
+
   return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>Login</h2>
-      <input
-        type="email"
-        placeholder="Enter email"
-        onChange={(e) => setEmail(e.target.value)}
-        style={styles.input}
-      />
-      <input
-        type="password"
-        placeholder="Enter password"
-        onChange={(e) => setPassword(e.target.value)}
-        style={styles.input}
-      />
-      <button onClick={handleLogin} style={styles.button}>Login</button>
-      {errorMessage && <p style={styles.error}>{errorMessage}</p>}
-    </div>
-  );
-*/
+      <div>
+        <div className="screen-container">
+          <Card className="league-form-card">
+            <CardContent>
+              <h2 className="screen-title">Login</h2>
+              <TextField
+                label="Email"
+                variant="outlined"
+                fullWidth
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="league-input"
+                InputLabelProps={{ style: { color: "#aaa" } }}
+              />
+              <TextField
+                label="Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="league-input"
+                InputLabelProps={{ style: { color: "#aaa" } }}
+              />
+              {errorMessage && <p className="error-text">{errorMessage}</p>}
+              <Button className="confirm-btn" onClick={handleLogin} fullWidth>
+                Login
+              </Button>
+            </CardContent>
+          </Card>
+          <Button className="passwordreset-btn" onClick={() => navigate("/forgot-password")}>
+                Forgot Password?
+          </Button>
+          <Button className="passwordreset-btn" onClick={() => navigate("/create-profile")}>
+                Create A Profile?
+          </Button>
 
-return (
-    <div>
-      <div className="screen-container">
-        <Card className="league-form-card">
-          <CardContent>
-            <h2 className="screen-title">Login</h2>
-            <TextField
-              label="Email"
-              variant="outlined"
-              fullWidth
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="league-input"
-              InputLabelProps={{ style: { color: "#aaa" } }}
-            />
-            <TextField
-              label="Password"
-              type="password"
-              variant="outlined"
-              fullWidth
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="league-input"
-              InputLabelProps={{ style: { color: "#aaa" } }}
-            />
-            {errorMessage && <p className="error-text">{errorMessage}</p>}
-            <Button className="confirm-btn" onClick={handleLogin} fullWidth>
-              Login
-            </Button>
-          </CardContent>
-        </Card>
+        </div>
+        <style jsx>{`
+          .screen-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #121212;
+          }
+          
+          .screen-title {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+          }
+          
+          .league-form-card {
+            background: #222;
+            color: white;
+            width: 350px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 255, 127, 0.3);
+          }
+          
+          .league-input {
+            background: white;
+            color: black;
+            margin-bottom: 15px;
+          }
+          
+          .action-btn {
+            background: white;
+            color: black;
+            border: 2px solid kellygreen;
+            border-radius: 30px;
+            padding: 12px 24px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 10px 10px rgba(0, 255, 127, 0.3);
+            margin-top: 15px;
+          }
+
+          .action-btn:hover {
+            background: darkgreen;
+            color: white;
+            border-color: darkgreen;
+          }
+          
+          .confirm-btn {
+            background: white;
+            color: black;
+            border-radius: 30px;
+            padding: 12px 24px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px #62FCDA;
+          }
+          
+          .confirm-btn:hover {
+            background: #62FCDA;
+            color: black;
+            border-color: darkgreen;
+          }
+          
+          .error-text {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+          }
+
+          .passwordreset-btn {
+            background: white;
+            color: black;
+            width : "100%";
+            border: 2px solid kellygreen;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 10px 10px rgba(0, 255, 127, 0.3);
+            margin-top: 15px;
+          }
+          
+          .passwordreset-btn:hover {
+            background: darkgreen;
+            color: white;
+            border-color: darkgreen;
+          }
+
+          
+          `}</style>
       </div>
-      <style jsx>{`
-        .screen-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          height: 100vh;
-          background-color: #121212;
-        }
-        
-        .screen-title {
-          text-align: center;
-          color: white;
-          font-size: 24px;
-          font-weight: bold;
-          margin-bottom: 20px;
-        }
-        
-        .league-form-card {
-          background: #222;
-          color: white;
-          width: 350px;
-          padding: 20px;
-          border-radius: 15px;
-          box-shadow: 0 4px 10px rgba(0, 255, 127, 0.3);
-        }
-        
-        .league-input {
-          background: white;
-          color: black;
-          margin-bottom: 15px;
-        }
-        
-        .action-btn {
-          background: "white";
-          color: black;
-          border: 2px solid kellygreen;
-          border-radius: 30px;
-          padding: 12px 24px;
-          font-weight: bold;
-          font-size: 1rem;
-          box-shadow: 0 10px 10px #62FCDA;
-          margin-top: 15px;
-        }
-        
-        .action-btn:hover {
-          background: "#62FCDA";
-          color: white;
-          border-color: darkgreen;
-        }
-        
-        .confirm-btn {
-          background: white;
-          color: black;
-          border-radius: 30px;
-          padding: 12px 24px;
-          font-weight: bold;
-          font-size: 1rem;
-          box-shadow: 0 4px 10px #62FCDA;
-        }
-        
-        .confirm-btn:hover {
-          background: #62FCDA;
-          color: black;
-          border-color: darkgreen;
-        }
-        
-        .error-text {
-          color: red;
-          font-size: 14px;
-          text-align: center;
-        }
-        
-        `}</style>
-    </div>
-  );
-
-
+    );
 
 };
 

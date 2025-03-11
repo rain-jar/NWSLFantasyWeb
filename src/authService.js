@@ -64,3 +64,19 @@ export const loginUser = async (email, password) => {
   // Step 3: Return user data
   return { success: true, user: userProfile, userId: userId };
 };
+
+export const resetPassword = async (email) => {
+  console.log("Resetting password for:", email);
+  
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: "https://wosofantasy.com/update-password",
+
+  });
+
+  if (error) {
+    console.error("Error sending reset email:", error.message);
+    return { success: false, error: error.message };
+  }
+
+  return { success: true, message: "Password reset email sent!" };
+};

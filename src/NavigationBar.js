@@ -68,7 +68,7 @@ const NavigationBar = () => {
             <Toolbar>
                 <Button 
                     color="inherit" 
-                    onClick={() => navigate("/create-join")}
+                    onClick={() => navigate("/join")}
                     className={location.pathname === "/create-join" ? "active-nav" : ""}
                 >
                     Home

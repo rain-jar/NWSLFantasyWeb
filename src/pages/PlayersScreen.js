@@ -28,8 +28,8 @@ const PlayersScreen = ({playersBase}) => {
   const [openModal, setOpenModal] = useState(false);
 
   const positions = ["All", "FW", "MF", "DF", "GK"];
-  const teams = ["Spirit"]; // More teams can be added
-  const statsSeasons = ["2024", "Week 1"]; // More seasons can be added
+  const teams = ["Spirit", "Pride", "Gotham FC", "Reign", "Thorns", "Dash","NC Courage", "Chicago Stars", "Utah Royals", "KC Current", "Louisville", "Angel City", "SD Wave", "Bay FC"] ; // More teams can be added
+  const statsSeasons = ["2024"]; // More seasons can be added
 
   const players = []; // Placeholder for player data
 

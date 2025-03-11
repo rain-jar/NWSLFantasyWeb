@@ -16,6 +16,10 @@ import { LeagueProvider, useLeague } from "./LeagueContext";
 import SignupScreen from './pages/SignUpScreen.js';
 import LoginScreen from './pages/LoginScreen.js';
 import DebugComponent from './pages/DebugComponent.js';
+import UpdatePassword from './pages/UpdatePassword.js';
+import ForgotPassword from './pages/ForgotPassword.js';
+import AboutPage from './pages/AboutPage.js';
+import CreateJoinScreenAdmin from './pages/CreateJoinScreenAdmin.js';
 
 
 function App() {
@@ -110,11 +114,19 @@ const ProtectedRoute = ({ children }) => {
           <Route path="/" element={<WelcomeScreen />} />
           <Route path="/create-profile" element={<SignupScreen onSelectedId={(newUserId) => setCurrentUserId(newUserId)}/>}/>
           <Route path="/existing-user" element={<LoginScreen onSelectedId={(newUserId) => setCurrentUserId(newUserId)}/>}/>
+          <Route path="/update-password" element={<UpdatePassword/>}/>
+          <Route path="/forgot-password" element={<ForgotPassword/>}/>
+          <Route path="/about" element={<AboutPage/>}/>
 
           {/* Protected Routes (Only accessible when logged in) */}
-          <Route path="/create-join" element={
+          <Route path="/join" element={
             <ProtectedRoute>
               <CreateJoinScreen currentUser={{ id: currentUserId }} onLeagueChosen={(newLeagueId) => setSelectedLeagueId(newLeagueId)}/>
+            </ProtectedRoute>
+          } />
+         <Route path="/create-join" element={
+            <ProtectedRoute>
+              <CreateJoinScreenAdmin currentUser={{ id: currentUserId }} onLeagueChosen={(newLeagueId) => setSelectedLeagueId(newLeagueId)}/>
             </ProtectedRoute>
           } />
           <Route path="/league-setup" element={
