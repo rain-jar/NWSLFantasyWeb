@@ -41,7 +41,7 @@ const WelcomeScreen = () => {
           }}
         />
         <Typography variant="h3" sx={{color: "white"}} gutterBottom>
-          Welcome to NWSL Fantasy Main
+          Welcome to NWSL Fantasy
         </Typography>
         <Typography variant="h6" sx={{color: "white"}}gutterBottom>
           Select an option to continue:
