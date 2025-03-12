@@ -4,7 +4,6 @@ import NavigationBar from "../NavigationBar";
 import { supabase } from "../supabaseClient";
 import { LeagueProvider, useLeague } from "../LeagueContext";
 
-
 const MyTeamScreen = ({playersBase}) => {
   const [statsFilter, setStatsFilter] = useState("2024");
   const { leagueParticipants, setLeagueParticipants, userId, users, availablePlayers, leagueId } = useLeague();
@@ -35,8 +34,8 @@ const MyTeamScreen = ({playersBase}) => {
 //  const teamName = leagueParticipants.find((m) => m.user_id === userId).team_name || {};
 //  const userName = users.find((m) => m.id === userId).user_name || {};
   console.log("TeamName and userName ", teamName, userName);
-  const teamRecord = "5-12-0"; // Randomized W-L-T record
-  const totalPoints = "1425"; // Randomized total points
+  const teamRecord = "0-0-0"; // Randomized W-L-T record
+  const totalPoints = "0"; // Randomized total points
 
   const fetchPlayers = async () => {
     try{
