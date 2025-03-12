@@ -4,8 +4,6 @@ import NavigationBar from "../NavigationBar";
 import { supabase } from "../supabaseClient";
 import { LeagueProvider, useLeague } from "../LeagueContext";
 
-//Testing sandbox
-
 const MyTeamScreen = ({playersBase}) => {
   const [statsFilter, setStatsFilter] = useState("2024");
   const { leagueParticipants, setLeagueParticipants, userId, users, availablePlayers, leagueId } = useLeague();
