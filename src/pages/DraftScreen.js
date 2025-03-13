@@ -863,7 +863,7 @@ const DraftScreen = ({playersBase}) => {
                   <TableRow key={index}
                     sx={{ cursor: "pointer", "&:hover": { backgroundColor: "rgba(16, 86, 51, 0.1)" } }} // Hover effect for better UX
                   >
-                    <TableCell><img src={player.image_url || process.env.PUBLIC_URL + "/placeholder.png"} alt={player.name} className="player-img"   onError={(e) => { e.target.onerror = null; e.target.src = process.env.PUBLIC_URL + "/placeholder.png"; }}/></TableCell>
+                    <TableCell><img src={process.env.PUBLIC_URL + "/placeholder.png"} alt={player.name} className="player-img"   onError={(e) => { e.target.onerror = null; e.target.src = process.env.PUBLIC_URL + "/placeholder.png"; }}/></TableCell>
                     <TableCell>{player.name}</TableCell>
                     <TableCell>{player.position}</TableCell>
                     <TableCell><Button className="add-btn" 
