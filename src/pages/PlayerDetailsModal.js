@@ -17,7 +17,7 @@ const PlayerDetailsModal = ({ open, onClose, player }) => {
             <p css={teamName}>{player.team}</p>
             <p css={teamName}>{player.position}</p>
           </div>
-          <img src={player.image_url || process.env.PUBLIC_URL + "/placeholder.png"} alt={player.name} css={playerImage} />
+          <img src={process.env.PUBLIC_URL + "/placeholder.png"} alt={player.name} css={playerImage} />
         </div>
 
         {/* Tabs Row */}
