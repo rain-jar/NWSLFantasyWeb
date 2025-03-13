@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { LeagueProvider, useLeague } from "../LeagueContext";
 import NavigationBar from "../NavigationBar";
+import PlayerDetailsModal from "./PlayerDetailsModal";
 
 
 
@@ -26,9 +27,13 @@ const PlayersScreen = ({playersBase}) => {
   const [isDataFetched, setIsDataFetched] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [openInfoModal, setOpenInfoModal] = useState(false);
+  const [selectedPlayerInfo, setSelectedPlayerInfo] = useState([]);
+
+
 
   const positions = ["All", "FW", "MF", "DF", "GK"];
-  const teams = ["Spirit", "Pride", "Gotham FC", "Reign", "Thorns", "Dash","NC Courage", "Chicago Stars", "Utah Royals", "KC Current", "Louisville", "Angel City", "SD Wave", "Bay FC"] ; // More teams can be added
+  const teams = ["Spirit", "Pride", "Gotham FC", "Thorns", "Chicago Stars", "Reign, Dash", "NC Courage", "Royals", "KC Current","Louisville", "Angel City", "SD Wave", "Bay FC"]; // More teams can be added
   const statsSeasons = ["2024"]; // More seasons can be added
 
   const players = []; // Placeholder for player data
@@ -104,6 +109,8 @@ useEffect(() => {
           "Red Cards": seasonMerge["Red Cards"] || 0,
           image_url : seasonMerge.image_url || "",
           FantasyPoints: seasonMerge.FantasyPoints || 0,
+          injuries: seasonMerge.injuries || 0,
+          description: seasonMerge.description || 0,
         };
       });
       console.log("✅ Season - Full Available Player List :", playerListFull);
@@ -241,6 +248,11 @@ useEffect(() => {
 
   }
 
+  const handleInfo = async(player) => {
+  //  alert("Testing Scroll image");
+    setSelectedPlayerInfo(player);
+    setOpenInfoModal(true);
+  }
 
   return (
     <div>
@@ -300,6 +312,7 @@ useEffect(() => {
                   <TableCell>   </TableCell>
                   <TableCell>   </TableCell>
                   <TableCell>Name</TableCell>
+                  <TableCell>   </TableCell>
                   <TableCell>Team</TableCell>
                   <TableCell>Pos</TableCell>
                   <TableCell onClick={() => handleSort("FantasyPoints")} style={{ cursor: "pointer" }}>Fpts</TableCell>
@@ -324,8 +337,11 @@ useEffect(() => {
                       setOpenModal(true); // ✅ Open modal when row is clicked
                     }}
                     sx={{"&:hover": {backgroundColor: "darkgreen", color: "white"}}}>Add</Button></TableCell>
-                    <TableCell><img src={player.image_url || process.env.PUBLIC_URL + "/placeholder.png"} alt={player.name} className="player-img"   onError={(e) => { e.target.onerror = null; e.target.src = process.env.PUBLIC_URL + "/placeholder.png"; }}/></TableCell>
+                    <TableCell><img src={ process.env.PUBLIC_URL + "/placeholder.png"} alt={player.name} className="player-img"   onError={(e) => { e.target.onerror = null; e.target.src = process.env.PUBLIC_URL + "/placeholder.png"; }}/></TableCell>
                     <TableCell>{player.name}</TableCell>
+                    <TableCell sx={{ cursor: "pointer" }}>
+                      <img src={process.env.PUBLIC_URL + "/scroll.png"} onClick={() => {handleInfo(player)}} alt="scroll" className="player-img"   onError={(e) => { e.target.onerror = null; e.target.src = process.env.PUBLIC_URL + "/placeholder.png"; }}/>
+                    </TableCell>
                     <TableCell>{player.team}</TableCell>
                     <TableCell>{player.position}</TableCell>
                     <TableCell>{player.FantasyPoints}</TableCell>
@@ -370,7 +386,12 @@ useEffect(() => {
               </div>
             </Box>
           </Modal>
-          )}    
+          )}  
+          
+          {selectedPlayerInfo && (
+            <PlayerDetailsModal open={openInfoModal} onClose={() => setOpenInfoModal(false)} player={selectedPlayerInfo} />
+          )}  
+
 
 
           {/* Styles */}
@@ -475,7 +496,7 @@ useEffect(() => {
             .player-img {
               width: 40px;
               height: 40px;
-              border-radius: 50%;
+              border-radius: 20%;
             }
 
             .modal-box {
